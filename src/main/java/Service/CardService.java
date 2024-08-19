@@ -1,6 +1,7 @@
 package Service;
 
-import Entity.Card;
+import dto.RequestDTO;
+import entity.Card;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ public interface CardService {
 
     Optional<Card> findById(Long id);
 
-    Card save(Card card);
+    Card save(RequestDTO requestDTO);
 
     boolean deleteById(Long id);
 

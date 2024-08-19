@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Entity.Card;
+import entity.Card;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -34,6 +34,11 @@ public class CardRepositoryMap implements CardRepository{
     @Override
     public boolean deleteById(Long id) {
         return database.remove(id) != null;
+    }
+
+    @Override
+    public Optional<Card> findByQuestion(String question) {
+        return Optional.empty();
     }
 
     @Override

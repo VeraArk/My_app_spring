@@ -1,6 +1,7 @@
-package Controller;
+package controller;
 
-import Entity.Card;
+import dto.RequestDTO;
+import entity.Card;
 import Service.CardServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,8 @@ public class CardController {
     }
 
     @PostMapping
-    public Card addNew(@RequestBody Card card) {
-        return cardServiceImpl.save(card);
+    public Card addNew(@RequestBody RequestDTO requestDto) {
+        return cardServiceImpl.save(requestDto);
     }
 
     @DeleteMapping("/{id}")

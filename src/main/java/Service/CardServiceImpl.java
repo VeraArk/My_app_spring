@@ -1,10 +1,10 @@
 package Service;
 
-import Entity.Card;
-import Repository.CardRepositoryMap;
+import dto.RequestDTO;
+import entity.Card;
+import repository.CardRepositoryMap;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,20 +26,28 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card save(Card card) {
-        if (card.getId() != null) {
-            Optional<Card> existingCard = repository.findById(card.getId());
-            if (existingCard.isPresent()) {
-                Card updatedCard = existingCard.get();
-                updatedCard.setQuestion(card.getQuestion());
-                updatedCard.setAnswer(card.getAnswer());
-                updatedCard.setTopic(card.getTopic());
-                updatedCard.setDifficultyLevel(card.getDifficultyLevel());
-                return repository.save(updatedCard);
-            }
+    public Card save(RequestDTO request) {
+        // Поиск карточки по вопросу (question)
+        Optional<Card> existingCard = repository.findByQuestion(request.getQuestion());
+
+        // Если карточка с таким вопросом существует
+        if (existingCard.isPresent()) {
+            Card updatedCard = existingCard.get();
+            updatedCard.setAnswer(request.getAnswer());
+            updatedCard.setTopic(request.getTopic());
+            updatedCard.setDifficultyLevel(request.getDifficultyLevel());
+            return repository.save(updatedCard);
+        } else {
+            // Если карточки с таким вопросом нет, создаем новую
+            Card newCard = new Card();
+            newCard.setQuestion(request.getQuestion());
+            newCard.setAnswer(request.getAnswer());
+            newCard.setTopic(request.getTopic());
+            newCard.setDifficultyLevel(request.getDifficultyLevel());
+            return repository.save(newCard);
         }
-        return repository.save(card);
     }
+
 
     @Override
     public boolean deleteById(Long id) {
