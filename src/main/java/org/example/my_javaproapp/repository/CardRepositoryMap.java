@@ -1,12 +1,12 @@
-package repository;
+package org.example.my_javaproapp.repository;
 
-import entity.Card;
+import org.example.my_javaproapp.entity.Card;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
-public class CardRepositoryMap implements CardRepository{
+abstract public class CardRepositoryMap implements CardRepository{
 
 
     private Map<Long, Card> database = new HashMap<>();
@@ -14,6 +14,9 @@ public class CardRepositoryMap implements CardRepository{
 
     @Override
     public List<Card> findAll() {
+        if (database.values() == null) {
+            return Collections.emptyList();
+        }
         return new ArrayList<>(database.values());
     }
 
@@ -32,7 +35,7 @@ public class CardRepositoryMap implements CardRepository{
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteByCardId(Long id) {
         return database.remove(id) != null;
     }
 

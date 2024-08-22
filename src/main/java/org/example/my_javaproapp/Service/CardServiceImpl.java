@@ -1,8 +1,8 @@
-package Service;
+package org.example.my_javaproapp.Service;
 
-import dto.RequestDTO;
-import entity.Card;
-import repository.CardRepositoryMap;
+import org.example.my_javaproapp.dto.RequestDTO;
+import org.example.my_javaproapp.entity.Card;
+import org.example.my_javaproapp.repository.CardRepositoryMap;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public boolean deleteById(Long id) {
-        return repository.deleteById(id);
+        return repository.deleteByCardId(id);
     }
 
     @Override

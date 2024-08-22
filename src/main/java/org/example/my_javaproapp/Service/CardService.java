@@ -1,21 +1,20 @@
-package repository;
+package org.example.my_javaproapp.Service;
 
-import entity.Card;
+import org.example.my_javaproapp.dto.RequestDTO;
+import org.example.my_javaproapp.entity.Card;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CardRepository {
+public interface CardService {
 
     List<Card> findAll();
 
     Optional<Card> findById(Long id);
 
-    Card save(Card card);
+    Card save(RequestDTO requestDTO);
 
     boolean deleteById(Long id);
-
-    Optional<Card> findByQuestion(String question);
 
     List<Card> findByTopic(String topic);
 

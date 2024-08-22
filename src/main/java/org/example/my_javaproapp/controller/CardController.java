@@ -1,8 +1,8 @@
-package controller;
+package org.example.my_javaproapp.controller;
 
-import dto.RequestDTO;
-import entity.Card;
-import Service.CardServiceImpl;
+import org.example.my_javaproapp.dto.RequestDTO;
+import org.example.my_javaproapp.entity.Card;
+import org.example.my_javaproapp.Service.CardServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

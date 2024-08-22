@@ -1,4 +1,4 @@
-package dto;
+package org.example.my_javaproapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
